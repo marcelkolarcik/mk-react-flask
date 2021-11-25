@@ -4,7 +4,7 @@ app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 
 CORS(app)
 @app.route('/api', methods=['GET'])
-
+@cross_origin()
 def index():
     print('getting fetch')
     return {
@@ -12,7 +12,7 @@ def index():
     }
 
 @app.route('/')
-
+@cross_origin()
 def serve():
     return send_from_directory(app.static_folder,'index.html')
 

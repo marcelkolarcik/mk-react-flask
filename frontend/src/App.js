@@ -1,26 +1,46 @@
-import React, {useEffect, useState} from 'react';
-import {Deploy} from "./components/deploy/Deploy";
+import React from 'react';
 import './App.css';
+
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
+
+import Login from "./components/auth/Login";
+
+import Register from "./components/auth/Register";
+import Reset from "./components/auth/Reset";
+import Dashboard from "./components/auth/Dashboard";
+import Front from "./components/pages/Front";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "./firebase";
 
 
 function App() {
-    const [state, setState] = useState({});
-    useEffect(() => {
-        fetch('/api')
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json()
-                }
-            }).then(data => {
-            console.log(data)
-            setState(data)
-        })
-    },[])
 
+    const [user] = useAuthState(auth);
 
     return (
         <div className="App">
-            <Deploy resp={state}/>
+
+            <Router>
+                <div className='d-flex justify-content-center bg-dark'>
+                    {user ? <Link className='mx-3 nav-link text-muted' to={'/dashboard'}>Dashboard</Link> :
+                        <Link className='mx-3 nav-link text-muted' to={'/login'}>Login</Link>}
+
+                    <Link className='mx-3 nav-link text-muted' to={'/'}>Home</Link>
+                </div>
+
+                <Routes>
+                    <Route path="/api/index" element={<Front/>}/>
+                    <Route path="/" element={<Front/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path="/reset" element={<Reset/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                </Routes>
+
+
+            </Router>
+
+
         </div>
     );
 }

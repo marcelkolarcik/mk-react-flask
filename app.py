@@ -1,20 +1,33 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
+
+from settings import mongo, MONGO_URI
+
 app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 
-CORS(app)
+import backend.api_b as api_m
+
+app.register_blueprint(api_m.api_bp, url_prefix='/api/')
+
+mongo.init_app(app, uri=MONGO_URI)
+
+
 @app.route('/api', methods=['GET'])
-@cross_origin()
+
 def index():
-    print('getting fetch')
+    print('getting fetch orig')
     return {
-        'tutorial':'React-Flask-Heroku'
+        'tutorial': 'React-Flask-Herokuert'
     }
 
+
+
+
 @app.route('/')
-@cross_origin()
+
 def serve():
-    return send_from_directory(app.static_folder,'index.html')
+    return send_from_directory(app.static_folder, 'index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

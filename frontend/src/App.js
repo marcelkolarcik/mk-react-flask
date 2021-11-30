@@ -11,6 +11,7 @@ import Dashboard from "./components/auth/Dashboard";
 import Front from "./components/pages/Front";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "./firebase";
+import Room from "./components/pages/Room";
 
 
 function App() {
@@ -18,14 +19,19 @@ function App() {
     const [user] = useAuthState(auth);
 
     return (
-        <div className="App">
+        <div>
 
             <Router>
-                <div className='d-flex justify-content-center bg-dark'>
-                    {user ? <Link className='mx-3 nav-link text-muted' to={'/dashboard'}>Dashboard</Link> :
-                        <Link className='mx-3 nav-link text-muted' to={'/login'}>Login</Link>}
+                <div className='d-flex justify-content-around bg-black w-100'>
+                     <Link className='mx-3 nav-link text-light fw-bold' to={'/'}>Demo App</Link>
+                     <Link className='mx-3 nav-link text-light ' to={'/'}>Places to stay</Link>
+                      <Link className='mx-3 nav-link text-light ' to={'/'}>Experiences</Link>
+                      <Link className='mx-3 nav-link text-light ' to={'/'}>Online Experiences</Link>
 
-                    <Link className='mx-3 nav-link text-muted' to={'/'}>Home</Link>
+                    {user ? <Link className='ms-auto mx-3 nav-link text-light fw-bold' to={'/dashboard'}>Dashboard</Link> :
+                        <Link className='ms-auto mx-3 nav-link text-light fw-bold' to={'/login'}>Become a host</Link>}
+
+
                 </div>
 
                 <Routes>
@@ -35,6 +41,7 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/reset" element={<Reset/>}/>
                     <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path={`room/:roomId`} element={<Room/>}/>
                 </Routes>
 
 

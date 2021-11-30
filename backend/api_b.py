@@ -1,4 +1,5 @@
 from pprint import pprint
+from traceback import format_exc
 
 from flask import Blueprint, send_from_directory, jsonify, request
 
@@ -22,10 +23,14 @@ def rooms():
         _rooms = list(mongo.db.listingsAndReviews.find({},
                                                        {'name': 1,
                                                         'summary': 1,
+
                                                         'space': 1,
                                                         'description': 1,
                                                         'reviews': 1,
                                                         'images': 1,
+                                                        'accommodates': 1,
+                                                        'bedrooms': 1,
+                                                        'beds': 1,
                                                         'price': {"$toString": "$price"},
                                                         '_id': {"$toString": "$_id"}}).limit(20))
 
@@ -58,3 +63,25 @@ def get_user(user_id):
     except Exception as e:
         pprint(e)
         return {}
+
+
+@api_bp.route('get_room/<room_id>/')
+def get_room(room_id):
+    try:
+        room = mongo.db.listingsAndReviews.find_one(
+            {'_id': room_id}
+        )
+        # mongoDB decimal128 is not jsonifyable so converting to float
+        for field in ['bathrooms', 'price', 'weekly_price', 'monthly_price', 'cleaning_fee', 'extra_people',
+                      'security_deposit',
+                      'guests_included']:
+            if field in room:
+                room[field] = str(room[field])
+            else:
+                room[field] = '0'
+
+        pprint(room)
+        return jsonify(room=room)
+    except Exception as e:
+        pprint(format_exc())
+        return jsonify(room={})

@@ -1,4 +1,5 @@
 from pprint import pprint
+import random
 from traceback import format_exc
 
 from flask import Blueprint, send_from_directory, jsonify, request
@@ -31,8 +32,8 @@ def rooms():
                                                         'accommodates': 1,
                                                         'bedrooms': 1,
                                                         'beds': 1,
-                                                        'price': {"$toString": "$price"},
-                                                        '_id': {"$toString": "$_id"}}).limit(20))
+                                                        '_id': {"$toString": "$_id"}}).skip(random.randint(1,2000)).limit(20))
+
 
         return jsonify(rooms=_rooms)
     except Exception as e:
@@ -81,6 +82,7 @@ def get_room(room_id):
                 room[field] = '0'
 
         pprint(room)
+        room['amenities'] = list(set(room['amenities']))
         return jsonify(room=room)
     except Exception as e:
         pprint(format_exc())

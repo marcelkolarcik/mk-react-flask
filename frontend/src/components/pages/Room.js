@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
+import ImageAndName from "../room/ImageAndName";
+import AccessAndDescription from "../room/AccessAndDescription";
+import Reviews from "../room/Reviews";
+import ReviewScores from "../room/ReviewScores";
 
 export default function Room() {
     let {roomId} = useParams();
@@ -16,32 +20,30 @@ export default function Room() {
             .then(data => {
                 setRoom(data.room)
                 setIsLoading(false)
-                console.log(data.room)
+
             })
             .catch(error => {
                 alert('error : ' + error)
             })
-    }, [])
+    }, [roomId])
 
-    if(isLoading){
+    if (isLoading) {
         return (
             <div className="container">
                 <p className="text-center">loading the room...</p>
             </div>
         );
-    }else {
-       return (
-        <div className='container'>
-            <div className="row">
-                <h1>Room ID : {roomId}</h1>
-                <div className="col-md-6 mx-auto">
-                    <p>{room.name || 'Not available at the moment.'}</p>
-                </div>
+    } else {
+        return (
+            <div className='container container-fluid'>
+                <ImageAndName room={room}/>
+                <AccessAndDescription room={room}/>
+                <ReviewScores room={room}/>
+                <Reviews reviews={room.reviews}/>
+
+
             </div>
-
-
-        </div>
-    )
+        )
     }
 
 }

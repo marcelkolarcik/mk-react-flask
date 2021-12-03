@@ -1,48 +1,21 @@
 import Star from "../ui/Star";
 import React from "react";
+import Score from "./Score";
 
-export default function ReviewScores(props)
-{
+export default function ReviewScores(props) {
     let room = props.room
     return (
         <section className={'my-5'}>
-              <p className="lead fw-bold"><Star/> {room.review_scores.review_scores_rating}%
-                    ({room.reviews.length} reviews)</p>
-                <div className="row row-cols-md-2 row-cols-1">
-                    <div className="col">
-                        <p className="small">
-                            Accuracy {room.review_scores.review_scores_accuracy}
-                        </p>
-
-                    </div>
-                    <div className="col">
-                        <p className="small">
-                            Checkin {room.review_scores.review_scores_checkin}
-                        </p>
-                    </div>
-                    <div className="col">
-                        <p className="small">
-                            Cleanliness {room.review_scores.review_scores_cleanliness}
-                        </p>
-                    </div>
-                    <div className="col">
-                        <p className="small">
-                            Communication {room.review_scores.review_scores_communication}
-                        </p>
-                    </div>
-                    <div className="col">
-                        <p className="small">
-                            Location {room.review_scores.review_scores_location}
-                        </p>
-                    </div>
-                    <div className="col">
-                        <p className="small">
-                            Value {room.review_scores.review_scores_value}
-                        </p>
-                    </div>
-
-
-                </div>
+            <p className="lead fw-bold"><Star/> {room.review_scores.review_scores_rating}%
+                ({room.reviews.length} reviews)</p>
+            <div className="row row-cols-md-2 row-cols-1">
+                <Score scoreName={'Accuracy'} score={room.review_scores.review_scores_accuracy}/>
+                <Score scoreName={'Checkin'} score={room.review_scores.review_scores_checkin}/>
+                <Score scoreName={'Cleanliness'} score={room.review_scores.review_scores_cleanliness}/>
+                <Score scoreName={'Communication'} score={room.review_scores.review_scores_communication}/>
+                <Score scoreName={'Location'} score={room.review_scores.review_scores_location}/>
+                <Score scoreName={'Value'} score={room.review_scores.review_scores_value}/>
+            </div>
         </section>
     );
 }

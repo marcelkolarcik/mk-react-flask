@@ -4,6 +4,8 @@ import ImageAndName from "../room/ImageAndName";
 import AccessAndDescription from "../room/AccessAndDescription";
 import Reviews from "../room/Reviews";
 import ReviewScores from "../room/ReviewScores";
+import SinglePlaceholderCard from "./SinglePlaceholderCard";
+import AllReviewsModal from "../room/AllReviewsModal";
 
 export default function Room() {
     let {roomId} = useParams();
@@ -30,7 +32,7 @@ export default function Room() {
     if (isLoading) {
         return (
             <div className="container">
-                <p className="text-center">loading the room...</p>
+                <SinglePlaceholderCard/>
             </div>
         );
     } else {
@@ -40,6 +42,7 @@ export default function Room() {
                 <AccessAndDescription room={room}/>
                 <ReviewScores room={room}/>
                 <Reviews reviews={room.reviews}/>
+                {room.reviews.length > 6 ? <AllReviewsModal room={room}/> : ''}
 
 
             </div>

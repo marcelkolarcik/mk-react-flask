@@ -1,16 +1,15 @@
 import React from 'react';
+import ReviewComment from "./ReviewComment";
 
 export default function Reviews(props) {
     return (
 
 
-            props.reviews.map((review) => (
-            <p key={review._id}>{review.comments}
-                <br/><span className={'text-muted'}>
-                    by {review.reviewer_name}</span>
-            </p>
-            ))
+        props.reviews.map((review, idx) => (
+            idx < 6 ?
+                <ReviewComment review={review}/> : ''
+        ))
 
 
-)
+    )
 }

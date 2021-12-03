@@ -18,10 +18,10 @@ export default function SearchInput() {
 
     return (
         <Row>
-             <div className={'col-md-12 small px-3 d-flex justify-content-center'}>
+             <div className={'col-md-12 small px-3 text-center mb-2'}>
                     {['Australia', 'Brazil', 'Canada', 'China', 'Hong Kong', 'Portugal', 'Spain', 'Turkey', 'United States']
                         .map(country => (
-                            <Link className=' mx-1 text-muted mb-2'
+                            <Link className=' mx-1 text-muted'
                                   to={'/search/' + country + '/'}>{country}</Link>
                         ))}
                    </div>

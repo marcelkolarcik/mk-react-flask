@@ -32,11 +32,7 @@ export default function SearchBar() {
                         <strong><small>Guests</small></strong><br/>
                         <small className={'text-muted'}>Add guests</small>
                     </div>
-                    <div className={'text-center col ' + classes.search_bar_item}>
-                        <div className={'ms-auto  me-2 ' + classes.search_btn}>
-                            <>&#128270;</>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>

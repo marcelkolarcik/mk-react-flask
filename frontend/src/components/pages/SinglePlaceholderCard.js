@@ -1,9 +1,11 @@
 import Placeholder from "react-bootstrap/Placeholder";
 import Card from "react-bootstrap/Card";
 import React from "react";
-
-export default function SinglePlaceholderCard() {
-    return (<Card>
+import Container from 'react-bootstrap/Container';
+export default function SinglePlaceholderCard(props) {
+    return (
+        <Card key={props.id}>
+            { props.text ?  <Container>{props.text}</Container> :''}
         <Placeholder as={Card.Title} animation="glow">
             <Placeholder xs={12} size={'xl'}/>
         </Placeholder>
@@ -17,5 +19,6 @@ export default function SinglePlaceholderCard() {
             </Placeholder>
             <Placeholder.Button variant="primary" xs={6}/>
         </Card.Body>
-    </Card>);
+    </Card>
+    );
 }

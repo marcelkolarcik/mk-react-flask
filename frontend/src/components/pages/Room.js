@@ -32,7 +32,7 @@ export default function Room() {
     if (isLoading) {
         return (
             <div className="container">
-                <SinglePlaceholderCard/>
+                <SinglePlaceholderCard text={'Loading room details...'}/>
             </div>
         );
     } else {

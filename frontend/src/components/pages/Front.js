@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
-import Star from "../ui/Star";
 import classes from './Front.module.css'
-import RoomInfo from "../ui/RoomInfo";
 import SearchBar from "../ui/SearchBar";
 import RoomCard from "./RoomCard";
 import PlaceholderRoomCards from "./PlaceholderRoomCards";
@@ -51,7 +48,7 @@ export default function Front() {
 
                         (
 
-                           <RoomCard room={room}/>
+                            <RoomCard key={room._id} room={room}/>
                         )
                     )}
 

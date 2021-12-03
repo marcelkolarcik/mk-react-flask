@@ -11,7 +11,7 @@ import Front from "./components/pages/Front";
 import Room from "./components/pages/Room";
 import MainNavigation from "./components/pages/MainNavigation";
 import Footer from "./components/pages/Footer";
-
+import SearchResults from "./components/pages/SearchResults";
 function App() {
 
 
@@ -29,6 +29,7 @@ function App() {
                     <Route path="/reset" element={<Reset/>}/>
                     <Route path="/dashboard" element={<Dashboard/>}/>
                     <Route path={`room/:roomId`} element={<Room/>}/>
+                    <Route path={`search/:searchString`} element={<SearchResults/>}/>
                 </Routes>
 
                 <Footer/>

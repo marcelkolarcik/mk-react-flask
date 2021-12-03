@@ -7,7 +7,7 @@ export default function Reviews(props) {
 
         props.reviews.map((review, idx) => (
             idx < 6 ?
-                <ReviewComment review={review}/> : ''
+                <ReviewComment key={review._id} review={review}/> : ''
         ))
 
 

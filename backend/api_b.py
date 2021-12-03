@@ -1,5 +1,5 @@
-from pprint import pprint
 import random
+from pprint import pprint
 from traceback import format_exc
 
 from flask import Blueprint, send_from_directory, jsonify, request
@@ -32,8 +32,8 @@ def rooms():
                                                         'accommodates': 1,
                                                         'bedrooms': 1,
                                                         'beds': 1,
-                                                        '_id': {"$toString": "$_id"}}).skip(random.randint(1,2000)).limit(20))
-
+                                                        '_id': {"$toString": "$_id"}}).skip(
+            random.randint(1, 2000)).limit(20))
 
         return jsonify(rooms=_rooms)
     except Exception as e:
@@ -87,3 +87,30 @@ def get_room(room_id):
     except Exception as e:
         pprint(format_exc())
         return jsonify(room={})
+
+
+@api_bp.route('search/<search_string>/')
+def search(search_string):
+    try:
+
+        results = list(mongo.db.listingsAndReviews.find(
+            {'address.country':search_string}, {'name': 1,
+                 'summary': 1,
+
+                 'space': 1,
+                 'description': 1,
+                 'reviews': 1,
+                 'images': 1,
+                 'accommodates': 1,
+                 'bedrooms': 1,
+                 'beds': 1,
+                 'address': 1,
+                 '_id': {"$toString": "$_id"}}
+        ).limit(20))
+
+        distinct = list(mongo.db.listingsAndReviews.distinct('address.country'))
+
+        return jsonify(results=results, distinct=distinct)
+    except Exception as e:
+        pprint(format_exc())
+        return jsonify(results=[])

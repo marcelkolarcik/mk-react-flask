@@ -28,7 +28,7 @@ export default function AllReviewsModal(props) {
                 <Modal.Body>
                     <ReviewScores room={props.room}/>
                     {props.room.reviews.map((review) => (
-                        <ReviewComment review={review}/>
+                        <ReviewComment key={review._id} review={review}/>
                     ))}
                 </Modal.Body>
 

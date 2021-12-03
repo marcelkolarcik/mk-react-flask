@@ -4,7 +4,7 @@ export default function PlaceholderRoomCards() {
 
     return (
         Array.from({length: 12}).map((_, index) => (
-            <SinglePlaceholderCard/>
+            <SinglePlaceholderCard key={index} id={index}/>
         ))
 
     );

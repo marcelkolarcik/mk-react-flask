@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewsHeading from "../ui/ReviewsHeading";
-
+import CostPerTrip from "../pages/room/CostPerTrip";
+import PriceFormater from "../ui/PriceFormater";
 export default function ImageAndName(props) {
 
     let Background = {
@@ -16,6 +17,8 @@ export default function ImageAndName(props) {
         <div className="row">
             <p className="lead fw-bold">
                 {props.room.name}  <>&nbsp;</>
+                <PriceFormater price={props.room.price}/>
+                /night
 
 
                 <span className={'float-end fw-light small'}><>&hearts;</>Save <>&nbsp;</></span>
@@ -28,7 +31,9 @@ export default function ImageAndName(props) {
                 <small className={'text-muted'}>{props.room.host.host_location}</small>
             </p>
 
-            <div className={'mt-3'} style={Background}/>
+            <div className={'mt-3'} style={Background}>
+                  <CostPerTrip room={props.room}/>
+            </div>
 
         </div>
     );

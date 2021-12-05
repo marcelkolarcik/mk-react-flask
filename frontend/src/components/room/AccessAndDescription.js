@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomInfo from "../ui/RoomInfo";
+import RoomInfo from "../pages/room/RoomInfo";
 import classes from './AccessAndDescription.module.css'
 import Amenities from "./Amenities";
 

@@ -6,6 +6,7 @@ import Reviews from "../room/Reviews";
 import ReviewScores from "../room/ReviewScores";
 import SinglePlaceholderCard from "./SinglePlaceholderCard";
 import AllReviewsModal from "../room/AllReviewsModal";
+import BookNow from "./room/BookNow";
 
 export default function Room() {
     let {roomId} = useParams();
@@ -23,6 +24,7 @@ export default function Room() {
                 setRoom(data.room)
                 setIsLoading(false)
 
+
             })
             .catch(error => {
                 alert('error : ' + error)
@@ -38,6 +40,8 @@ export default function Room() {
     } else {
         return (
             <div className='container container-fluid'>
+                <BookNow room={room}/>
+
                 <ImageAndName room={room}/>
                 <AccessAndDescription room={room}/>
                 <ReviewScores room={room}/>

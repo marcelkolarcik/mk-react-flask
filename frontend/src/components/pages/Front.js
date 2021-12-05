@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import classes from './Front.module.css'
-import SearchBar from "../ui/SearchBar";
-import RoomCard from "./RoomCard";
-import PlaceholderRoomCards from "./PlaceholderRoomCards";
+import SearchBar from "./front/SearchBar";
+import RoomCard from "./room/RoomCard";
+import PlaceholderRoomCards from "./room/PlaceholderRoomCards";
 
 export default function Front() {
 

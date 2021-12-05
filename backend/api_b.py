@@ -21,10 +21,11 @@ def index():
 @api_bp.route('rooms/', methods=['GET'])
 def rooms():
     try:
+
         _rooms = list(mongo.db.listingsAndReviews.find({},
                                                        {'name': 1,
                                                         'summary': 1,
-
+                                                        'price': {"$toString": "$price"},
                                                         'space': 1,
                                                         'description': 1,
                                                         'reviews': 1,
@@ -46,7 +47,7 @@ def add_user():
     try:
 
         user = request.get_json()
-        pprint(user)
+
         mongo.db.users.insert_one(user)
 
         return jsonify(response='success')
@@ -81,7 +82,6 @@ def get_room(room_id):
             else:
                 room[field] = '0'
 
-        pprint(room)
         room['amenities'] = list(set(room['amenities']))
         return jsonify(room=room)
     except Exception as e:
@@ -89,28 +89,37 @@ def get_room(room_id):
         return jsonify(room={})
 
 
-@api_bp.route('search/<search_string>/')
-def search(search_string):
+@api_bp.route('search/', methods=['POST'])
+def search():
     try:
+        form_data = request.get_json()
 
+        country = form_data['country']
+        guests = form_data['guests']
+        nights = form_data['nights']
+        pprint(form_data)
         results = list(mongo.db.listingsAndReviews.find(
-            {'address.country':search_string}, {'name': 1,
-                 'summary': 1,
-
-                 'space': 1,
-                 'description': 1,
-                 'reviews': 1,
-                 'images': 1,
-                 'accommodates': 1,
-                 'bedrooms': 1,
-                 'beds': 1,
-                 'address': 1,
-                 '_id': {"$toString": "$_id"}}
+            {'address.country': country,
+             'accommodates': {"$gte": guests},
+             # 'minimum_nights': {"$gte": nights}
+             },
+            {'name': 1,
+             'summary': 1,
+             'price': {"$toString": "$price"},
+             'space': 1,
+             'description': 1,
+             'reviews': 1,
+             'images': 1,
+             'accommodates': 1,
+             'bedrooms': 1,
+             'beds': 1,
+             'address': 1,
+             '_id': {"$toString": "$_id"}}
         ).limit(20))
 
-        distinct = list(mongo.db.listingsAndReviews.distinct('address.country'))
 
-        return jsonify(results=results, distinct=distinct)
+
+        return jsonify(results=results)
     except Exception as e:
         pprint(format_exc())
         return jsonify(results=[])

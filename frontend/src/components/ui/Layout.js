@@ -1,5 +1,5 @@
-import MainNavigation from "../pages/MainNavigation";
-import Footer from "../pages/Footer";
+import MainNavigation from "./MainNavigation";
+import Footer from "./Footer";
 import React from "react";
 
 export default function Layout(props) {

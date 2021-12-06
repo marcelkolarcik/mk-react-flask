@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewsHeading from "../ui/ReviewsHeading";
-import CostPerTrip from "../pages/room/CostPerTrip";
+import ReviewsHeading from "./ReviewsHeading";
+import CostPerTrip from "./CostPerTrip";
 import PriceFormater from "../ui/PriceFormater";
 export default function ImageAndName(props) {
 

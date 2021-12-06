@@ -2,16 +2,16 @@ import React from 'react';
 
 import {Route, Routes} from "react-router-dom";
 
-import Login from "./components/auth/Login";
+import Login from "./auth/Login";
 
-import Register from "./components/auth/Register";
-import Reset from "./components/auth/Reset";
-import Dashboard from "./components/auth/Dashboard";
-import Front from "./components/pages/Front";
-import Room from "./components/pages/Room";
-import SearchResults from "./components/pages/SearchResults";
+import Register from "./auth/Register";
+import Reset from "./auth/Reset";
+import Dashboard from "./auth/Dashboard";
+import Front from "./pages/Front";
+import Room from "./pages/Room";
+import SearchResults from "./pages/SearchResults";
 import Layout from "./components/ui/Layout";
-import Bookings from "./components/pages/Bookings";
+import Bookings from "./pages/Bookings";
 
 function App() {
 

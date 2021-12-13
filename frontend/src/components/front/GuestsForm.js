@@ -6,9 +6,9 @@ export default function GuestsForm(props) {
 
     return (
         <div className="row ">
-            <div className="mx-auto mb-3 d-flex justify-content-evenly align-items-center">
-                <button className={'text-secondary border border-secondary border-3 rounded-circle'}
-                         style={{width:'40px',height:'40px'}}
+            <div className="mx-auto mb-3 d-flex justify-content-center align-items-center">
+                <button className={'btn btn-outline-secondary border border-3'}
+
                      onClick={() => {
                          bookingCtx.setGuests(1,props.maxGuests)
                      }}
@@ -16,8 +16,8 @@ export default function GuestsForm(props) {
                     <span className={'fs-4'}>+</span>
                 </button>
                 <button
-                    style={{width:'40px',height:'40px'}}
-                    className={'text-danger border border-danger border-3 rounded-circle'}
+
+                    className={'btn btn-outline-secondary border border-3'}
                      onClick={() => {
                          bookingCtx.setGuests(-1)
                      }}
@@ -27,6 +27,7 @@ export default function GuestsForm(props) {
                 </button>
 
             </div>
+
         </div>
     );
 }

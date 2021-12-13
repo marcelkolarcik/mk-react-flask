@@ -11,12 +11,12 @@ import classes from './BookNow.module.css'
 
 export default function BookingForm(props) {
     const room = props.room
-    const newRoom = props.new
+
     const bookingCtx = useContext(BookingContext)
+    const newRoom = bookingCtx.country === ''
     const navigate = useNavigate();
-    bookingCtx.setRoomName(room.name)
-    bookingCtx.setRoomImage(room.images.picture_url)
-    bookingCtx.setTotalCost(room.price)
+
+
     const correctDates = bookingCtx.startDate < bookingCtx.endDate
 
     function createBooking() {
@@ -65,30 +65,33 @@ export default function BookingForm(props) {
                     </Card.Text>
                     <Card.Text>
                         <strong>Guests: </strong>{bookingCtx.guests}
+                        {bookingCtx.guests === room.accommodates &&
+                        <span className={'mx-auto px-3 text-warning'}>max</span>}
                     </Card.Text>
                     {!newRoom ? '' : <GuestsForm maxGuests={room.accommodates}/>}
+
                     <Card.Text>
                         <strong>Nights: </strong>{correctDates && bookingCtx.numOfNights}
                     </Card.Text>
 
-                        <strong>Dates: </strong>
-                        {!newRoom ?
-                            <div><DateFormater date={bookingCtx.startDate}/> - <DateFormater date={bookingCtx.endDate}/>
+                    <strong>Dates: </strong>
+                    {!newRoom ?
+                        <div><DateFormater date={bookingCtx.startDate}/> - <DateFormater date={bookingCtx.endDate}/>
+                        </div>
+                        : <div className={' p-1 bg-secondary text-light d-flex justify-content-center'}>
+                            <div>
+                                <span className={'ps-2'}>Check-in</span>
+                                <DateFormPicker date={'start'}/>
                             </div>
-                            : <div className={' p-1 bg-secondary text-light d-flex justify-content-center'}>
-                                <div>
-                                    <span className={'ps-2'}>Check-in</span>
-                                    <DateFormPicker date={'start'}/>
-                                </div>
-                                <div>
-                                    <span className={'ps-2'}>Check-out</span>
-                                    <DateFormPicker date={'end'}/>
-                                </div>
+                            <div>
+                                <span className={'ps-2'}>Check-out</span>
+                                <DateFormPicker date={'end'}/>
+                            </div>
 
 
-                            </div>}
-                        {!correctDates &&
-                        <span className={'fw-bold p-1 text-warning'}>Check-in must be before check-out</span>}
+                        </div>}
+                    {!correctDates &&
+                    <span className={'fw-bold p-1 text-warning'}>Check-in must be before check-out</span>}
 
                     <Card.Text>
                         <strong>Total cost: <PriceFormater price={correctDates && bookingCtx.totalCost}/> </strong>
@@ -99,8 +102,8 @@ export default function BookingForm(props) {
                 <Card.Footer>
 
                     {(bookingCtx.numOfNights > 0 && bookingCtx.guests > 0 && correctDates) &&
-                    <Button  onClick={createBooking}
-                            className={classes.book_now_btn+' w-100'}>
+                    <Button onClick={createBooking}
+                            className={classes.book_now_btn + ' w-100'}>
                         Book Now!
                     </Button>}
                 </Card.Footer>

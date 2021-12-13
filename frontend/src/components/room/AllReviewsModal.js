@@ -19,7 +19,11 @@ export default function AllReviewsModal(props) {
                 Show all {props.room.reviews.length} reviews
             </Button>
 
-            <Modal size={'lg'} show={show} onHide={handleClose} animation={true} scrollable={true}>
+            <Modal size={'lg'}
+                   show={show}
+                   onHide={handleClose}
+                   animation={true}
+                   scrollable={true}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <ReviewsHeading room={props.room}/>

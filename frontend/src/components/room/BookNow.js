@@ -1,11 +1,10 @@
 import Button from "react-bootstrap/Button";
-import React, {useContext, useState} from "react";
-import BookingContext from "../../store/booking-context";
+import React, {useState} from "react";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import BookingForm from "./BookingForm";
 import classes from './BookNow.module.css'
+
 export default function BookNow(props) {
-    const bookingCtx = useContext(BookingContext)
 
 
     const [show, setShow] = useState(false);
@@ -17,8 +16,8 @@ export default function BookNow(props) {
         <div className={'sticky-top'}>
             <Button
 
-                    onClick={handleShow}
-                    className={classes.book_now_btn}>
+                onClick={handleShow}
+                className={classes.book_now_btn}>
                 Book Now!
             </Button>
 
@@ -28,9 +27,7 @@ export default function BookNow(props) {
                         Booking details</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    {bookingCtx.country  ?
-                        <BookingForm room={props.room} closeHandler={handleClose}/> :
-                         <BookingForm room={props.room} closeHandler={handleClose} new={true}/>}
+                    <BookingForm room={props.room} closeHandler={handleClose}/>
                 </Offcanvas.Body>
             </Offcanvas>
         </div>

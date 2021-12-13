@@ -28,7 +28,7 @@ function Dashboard() {
         })
 
 
-    }, [user, loading, error]);
+    }, [user, loading, error, navigate]);
 
     return (
         <div className="dashboard">

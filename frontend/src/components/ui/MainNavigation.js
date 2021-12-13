@@ -13,26 +13,27 @@ export default function MainNavigation() {
     return (
         <Navbar collapseOnSelect expand="md" bg="black" variant="dark">
             <Container>
-                <Navbar.Brand><Link className='mx-3 nav-link text-light fw-bold' to={'/'}>Demo Airbnb</Link></Navbar.Brand>
+                <Navbar.Brand><Link className='mx-3 nav-link text-light fw-bold' to={'/'}>Demo
+                    Airbnb</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                       <Link className='mx-3 nav-link text-light ' to={'/'}>Places to stay</Link>
+                        <Link className='mx-3 nav-link text-light ' to={'/'}>Places to stay</Link>
+                        <Link className='mx-3 nav-link text-light ' to={'/map'}>Map</Link>
 
-                            {bookingCtx.totalBookings ? <Link className='mx-3 nav-link text-light ' to={'/my-bookings'}>
-                                    My bookings {bookingCtx.totalBookings}</Link> :
-                                ''}
+                        {bookingCtx.totalBookings ? <Link className='mx-3 nav-link text-light ' to={'/my-bookings'}>
+                                My bookings {bookingCtx.totalBookings}</Link> :
+                            ''}
 
 
                     </Nav>
                     <Nav>
 
-                            {user ?
-                                <Link className='ms-auto mx-3 nav-link text-light fw-bold'
-                                      to={'/dashboard'}>Dashboard</Link> :
-                                <Link className='ms-auto mx-3 nav-link text-light fw-bold' to={'/login'}>Become a
-                                    host</Link>}
-
+                        {user ?
+                            <Link className='ms-auto mx-3 nav-link text-light fw-bold'
+                                  to={'/dashboard'}>Dashboard</Link> :
+                            <Link className='ms-auto mx-3 nav-link text-light fw-bold' to={'/login'}>Become a
+                                host</Link>}
 
 
                     </Nav>

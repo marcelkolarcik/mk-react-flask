@@ -21,7 +21,9 @@ def index():
 @api_bp.route('rooms/', methods=['GET'])
 def rooms():
     try:
-
+        limit = 20
+        if request.values and 'map' in request.values:
+            limit = 500
         _rooms = list(mongo.db.listingsAndReviews.find({},
                                                        {'name': 1,
                                                         'summary': 1,
@@ -33,8 +35,9 @@ def rooms():
                                                         'accommodates': 1,
                                                         'bedrooms': 1,
                                                         'beds': 1,
+                                                        'coordinates':'$address.location.coordinates',
                                                         '_id': {"$toString": "$_id"}}).skip(
-            random.randint(1, 2000)).limit(20))
+            random.randint(1, 2000)).limit(limit))
 
         return jsonify(rooms=_rooms)
     except Exception as e:

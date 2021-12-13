@@ -12,6 +12,7 @@ import Room from "./pages/Room";
 import SearchResults from "./pages/SearchResults";
 import Layout from "./components/ui/Layout";
 import Bookings from "./pages/Bookings";
+import SearchMap from "./pages/SearchMap";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Routes>
                 <Route path="/api/index" element={<Front/>}/>
                 <Route path="/" element={<Front/>}/>
+                 <Route path="/map" element={<SearchMap/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/reset" element={<Reset/>}/>

@@ -14,7 +14,7 @@ function Login() {
             return;
         }
         if (user) navigate("/dashboard");
-    }, [user, loading, error]);
+    }, [user, loading, error, navigate]);
     return (
         <div className="container">
             <h4 className='text-center my-5'>Login</h4>

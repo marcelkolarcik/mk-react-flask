@@ -8,6 +8,7 @@ import {useNavigate} from "react-router";
 import GuestsForm from "../front/GuestsForm";
 import DateFormPicker from "../ui/DateFromPicker";
 import classes from './BookNow.module.css'
+
 export default function BookingForm(props) {
     const room = props.room
     const newRoom = props.new
@@ -69,7 +70,7 @@ export default function BookingForm(props) {
                     <Card.Text>
                         <strong>Nights: </strong>{correctDates && bookingCtx.numOfNights}
                     </Card.Text>
-                    <Card.Text>
+
                         <strong>Dates: </strong>
                         {!newRoom ?
                             <div><DateFormater date={bookingCtx.startDate}/> - <DateFormater date={bookingCtx.endDate}/>
@@ -88,7 +89,7 @@ export default function BookingForm(props) {
                             </div>}
                         {!correctDates &&
                         <span className={'fw-bold p-1 text-warning'}>Check-in must be before check-out</span>}
-                    </Card.Text>
+
                     <Card.Text>
                         <strong>Total cost: <PriceFormater price={correctDates && bookingCtx.totalCost}/> </strong>
 

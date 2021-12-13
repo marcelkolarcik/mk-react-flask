@@ -42,7 +42,7 @@ export default function SearchResults() {
             .catch(error => {
                 alert('error : ' + error)
             })
-    }, [bookingCtx.country])
+    }, [bookingCtx.country, bookingCtx.guests, bookingCtx.numOfNights])
 
     if (isLoading) {
 
